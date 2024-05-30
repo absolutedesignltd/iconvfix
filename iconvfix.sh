@@ -22,8 +22,10 @@ if [[ "system is vulnerable" == "$ISVULN" ]]; then
         esac
 elif [[ "system is safe" == "$ISVULN" ]]; then
         echo "Already fixed, exiting"
+	exit
 else
         echo "Script issue, check manually"
+	exit
 fi
 
 ISVULN=$(curl -sO https://sansec.io/downloads/cve-2024-2961.c && gcc cve-2024-2961.c -o poc && ./poc)
